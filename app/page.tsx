@@ -1,15 +1,46 @@
-"use client"
-import { useState } from 'react'
+'use client';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { CookieIcon, GiftIcon, SparklesIcon } from 'lucide-react'
+import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk';
+import { TracingInstrumentation } from '@grafana/faro-web-tracing';
+import type { Faro } from '@grafana/faro-core';
 
 export default function GingerbreadFactoryLanding() {
   const [email, setEmail] = useState('')
+  const faroRef: React.RefObject<Faro|null> = useRef(null);
+
+  useEffect(() => {
+    if (!faroRef!.current) {
+      const temp = initializeFaro({
+        url: 'https://faro-collector-prod-sa-east-1.grafana.net/collect/fbb5935a8c75616cefc3845cb28446d2',
+        app: {
+          name: 'gingerfaro',
+          version: '1.0.0',
+          environment: 'production'
+        },
+
+        instrumentations: [
+          // Mandatory, omits default instrumentations otherwise.
+          ...getWebInstrumentations(),
+
+          // Tracing package to get end-to-end visibility for HTTP requests.
+          new TracingInstrumentation(),
+        ],
+      });
+
+      if (temp!=null) {
+        faroRef.current = temp;
+      }
+
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-amber-50 text-brown-900 font-sans">
+
       {/* Header */}
       <header className="bg-brown-800 text-amber-50 py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
