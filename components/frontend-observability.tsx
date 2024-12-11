@@ -11,13 +11,12 @@ export default function FrontendObservability() {
 
   try {
    initializeFaro({
-      url: process.env.NEXT_PUBLIC_FARO_URL,
-      app: {
-        name: process.env.NEXT_PUBLIC_FARO_APP_NAME || 'unknown_service:webjs',
-        namespace: process.env.NEXT_PUBLIC_FARO_APP_NAMESPACE || undefined,
-        version: process.env.VERCEL_DEPLOYMENT_ID || '1.0.0',
-        environment: process.env.NEXT_PUBLIC_VERCEL_ENV || 'development',
-      },
+    url: 'https://faro-collector-prod-sa-east-1.grafana.net/collect/fbb5935a8c75616cefc3845cb28446d2',
+    app: {
+      name: 'gingerfaro',
+      version: '1.0.0',
+      environment: 'production'
+    },
 
       instrumentations: [
         // Mandatory, omits default instrumentations otherwise.
