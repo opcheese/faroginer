@@ -38,6 +38,10 @@ export default function GingerbreadFactoryLanding() {
     }
   }, [])
 
+  const throwError = () => {
+    throw new Error("This is an error");
+  }
+
   return (
     <div className="min-h-screen bg-amber-50 text-brown-900 font-sans">
 
@@ -155,7 +159,7 @@ export default function GingerbreadFactoryLanding() {
                 className="w-full"
               />
             </div>
-            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white">
+            <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white" onClick={throwError}>
               Send Message
             </Button>
           </form>
