@@ -91,7 +91,7 @@ export default function GingerbreadFactoryLanding() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-8">What Our Customers Say</h2>
           <div className="max-w-2xl mx-auto">
-            <p className="text-xl italic mb-4">"The gingerbread houses from Gingerbread Dreams are simply magical! They transport me back to my childhood every time."</p>
+            <p className="text-xl italic mb-4">The gingerbread houses from Gingerbread Dreams are simply magical! They transport me back to my childhood every time.</p>
             <p className="font-semibold">- Happy Customer</p>
           </div>
         </div>
